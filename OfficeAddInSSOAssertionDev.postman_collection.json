@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "b6671690-bc81-45ad-a920-bc9fb2faa5c1",
+		"name": "Office Add-In Assertion development",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sample Graph Test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer **YOUR Authorization TOKEN HERE ***",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://graph.microsoft.com/v1.0/sites/**YourTenantname**.sharepoint.com/sites/**YourSiteID**/lists/Company/items",
+					"protocol": "https",
+					"host": [
+						"graph",
+						"microsoft",
+						"com"
+					],
+					"path": [
+						"v1.0",
+						"sites",
+						"**YourTenantname**.sharepoint.com",
+						"sites",
+						"**YourSiteID**",
+						"lists",
+						"Company",
+						"items"
+					]
+				},
+				"description": "TEST"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization On Behalf OF",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{clientid}}",
+							"type": "text"
+						},
+						{
+							"key": "assertion",
+							"value": "** YOUR ASSERTION TOKEN HERE **",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "sites.readwrite.all",
+							"type": "text"
+						},
+						{
+							"key": "requested_token_use",
+							"value": "on_behalf_of",
+							"type": "text"
+						},
+						{
+							"key": "resource",
+							"value": "https://graph.microsoft.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{loginsite}}oauth2/token",
+					"host": [
+						"{{loginsite}}oauth2"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
